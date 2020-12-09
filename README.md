@@ -36,11 +36,20 @@ You now have a local server running for testing!
 
 These are just my notes about features I might implement
 
+## Short Term
+* The cache is not shared between gunicorn workers.  Whoops.  Should probably fix that.
+* Help text on each field explaining it in greater detail
+* perma-link to a set of parameters
+* "safe for work" version? LOL
+
+## Medium-Term
+* Better SEO / discoverability
+* Nav bar elements don't show which page is active dynamically
+
+## Long Term
+* the whole thing is just fugly.  Needs TLC.
 * More careful consideration of taxes in the calculation.  For example,
   distributions are pre-tax but social security is post-tax (I think?)
-* Nav bar elements don't show which page is active dynamically
-* the whole thing is just fugly.  Needs TLC.
 * I should probably have a plan for what to do if this blows up and/or gets
   DOS'd.  This will definitely be the most CPU intensive thing on my colo'd
   server if it gets any traffic at all.
-* The cache is not shared between gunicorn workers.  Whoops.  Should probably fix that.
