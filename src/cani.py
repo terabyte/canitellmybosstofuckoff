@@ -1,5 +1,4 @@
 from cachetools import cached, LRUCache
-from cachetools.keys import hashkey
 from time import time
 import concurrent.futures
 import os
@@ -68,6 +67,9 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
 
 def validate_and_parse_form(form):
     data = dict()
