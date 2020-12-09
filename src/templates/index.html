@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Can you tell your boss to fuck off?  Find Out!</h1>
+
+	<p>
+	First, a <b><i>very</i></b> important disclaimer!  <b><i>Use the
+calculations provided herein for anything beyond your own entertainment only at
+your own financial peril.</i></b>  For more, see the disclaimer at the bottom
+of the <a href="{{ url_for('about') }}">About</a> page.
+	</p>
+    <form method="post">
+		<label for="total_savings">Total Savings:</label>
+		<input type="text" id="total_savings" name="total_savings" value="{{ data['total_savings'] }}"/>
+		<br/>
+
+		<label for="annual_disbursement">Annual Disbursement:</label>
+		<input type="text" id="annual_disbursement" name="annual_disbursement" value="{{ data['annual_disbursement'] }}"/>
+		<br/>
+
+		<label for="average_return">Average Return (i.e. 8% => 0.08):</label>
+		<input type="text" id="average_return" name="average_return" value="{{ data['average_return'] }}"/>
+		<br/>
+
+		<label for="standard_deviation">Standard Deviation (i.e. 19% => 0.19):</label>
+		<input type="text" id="standard_deviation" name="standard_deviation" value="{{ data['standard_deviation'] }}"/>
+		<br/>
+
+		<label for="annual_inflation">Annual Inflation (i.e. 2.25% => 0.0225)</label>
+		<input type="text" id="annual_inflation" name="annual_inflation" value="{{ data['annual_inflation'] }}"/>
+		<br/>
+
+		<label for="starting_age">Starting Age:</label>
+		<input type="text" id="starting_age" name="starting_age" value="{{ data['starting_age'] }}"/>
+		<br/>
+
+		<label for="ending_age">Age at Death (aim high, ye optimist):</label>
+		<input type="text" id="ending_age" name="ending_age" value="{{ data['ending_age'] }}"/>
+		<br/>
+
+		<label for="inheritance">Desired Inheritance (how much money you must have left to succeed, default zero)</label>
+		<input type="text" id="inheritance" name="inheritance" value="{{ data['inheritance'] }}"/>
+		<br/>
+
+		<label for="social_security_payout">Social Security Payout (per month, default zero)</label>
+		<input type="text" id="social_security_payout" name="social_security_payout" value="{{ data['social_security_payout'] }}"/>
+		<br/>
+
+		<label for="social_security_age">Age Social Security Disbursements Begin (default 70)</label>
+		<input type="text" id="social_security_age" name="social_security_age" value="{{ data['social_security_age'] }}"/>
+		<br/>
+
+        <button type="submit" class="btn btn-primary">Submit</button> <a href="{{ url_for('index') }}">clear</a>
+    </form>
+    <br/><br/>
+    {% if data['calculate'] %}
+    <h1>Results:</h1>
+    <p>After a gripping mathematical battle (played out {{ data['simulation_size'] }} times), your chance of success was determined to be {{ data['success'] }}%.  Prognosis: {{ data['issuccess'] }}</p>
+    {% if data['runtime'] %}
+    <p><small>Runtime: {{ data['runtime'] }} seconds</small></p>
+    {% endif %}
+    {% endif %}
+
+
+
+
+{% endblock %}
