@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve canitellmybosstofuckoff.com
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/cani/canitellmybosstofuckoff
+Environment="PATH=/var/www/.pyenv/versions/cani/bin/:/var/www/cani/canitellmybosstofuckoff/bin"
+ExecStart=/var/www/.pyenv/versions/cani/bin/gunicorn --workers 4 --bind unix:cani.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
