@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Can you tell your boss to fuck off?  Find Out!</h1>
+    <h1>Can I tell my boss to fuck off?</h1>
 
-	<p>
+    <br/><br/>
+    {% if not data['calculate'] %}
+        <h1>MAYBE!</h1>
+        <br/><br/>
+        <h2>Submit the form below to find out...</h2>
+    {% else %}
+    <h1>{{ data['issuccess'] }}</h1>
+        <p>After a gripping mathematical battle (played out {{ data['simulation_size'] }} times), your chance of success was determined to be {{ data['success'] }}%.  Prognosis: {{ data['issuccess'] }}</p>
+        {% if data['runtime'] %}
+        <p><small>Runtime: {{ data['runtime'] }} seconds</small></p>
+        {% endif %}
+        <br/><br/>
+        <h2>Tweak the numbers and try again...</h2>
+    {% endif %}
+    <br/><br/>
+	<p size="small">
 	First, a <b><i>very</i></b> important disclaimer!  <b><i>Use the
 calculations provided herein for anything beyond your own entertainment only at
-your own financial peril.</i></b>  For more, see the disclaimer at the bottom
-of the <a href="{{ url_for('about') }}">About</a> page.
+your own financial peril.</i></b>  For more, see the full disclaimer in the <a
+href="{{ url_for('about') }}">About</a> page.
 	</p>
     <form method="post">
 		<label for="total_savings">Total Savings:</label>
@@ -51,16 +66,4 @@ of the <a href="{{ url_for('about') }}">About</a> page.
 
         <button type="submit" class="btn btn-primary">Submit</button> <a href="{{ url_for('index') }}">clear</a>
     </form>
-    <br/><br/>
-    {% if data['calculate'] %}
-    <h1>Results:</h1>
-    <p>After a gripping mathematical battle (played out {{ data['simulation_size'] }} times), your chance of success was determined to be {{ data['success'] }}%.  Prognosis: {{ data['issuccess'] }}</p>
-    {% if data['runtime'] %}
-    <p><small>Runtime: {{ data['runtime'] }} seconds</small></p>
-    {% endif %}
-    {% endif %}
-
-
-
-
 {% endblock %}

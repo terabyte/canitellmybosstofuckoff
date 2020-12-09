@@ -4,7 +4,7 @@ import concurrent.futures
 import os
 import random
 
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Flask, render_template, request, flash
 #from werkzeung.exceptions import abort
 
 app = Flask(__name__)
@@ -53,7 +53,7 @@ def index():
         elif success > maybe_threshold:
             data['issuccess'] = 'MAYBE?'
         else:
-            data['issuccess'] = 'NOPE?'
+            data['issuccess'] = 'NOPE!'
 
 
     if request.method == 'GET':
