@@ -43,4 +43,4 @@ These are just my notes about features I might implement
 * I should probably have a plan for what to do if this blows up and/or gets
   DOS'd.  This will definitely be the most CPU intensive thing on my colo'd
   server if it gets any traffic at all.
-
+* The cache is not shared between gunicorn workers.  Whoops.  Should probably fix that.
