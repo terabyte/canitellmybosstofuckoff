@@ -7,11 +7,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
         <script data-ad-client="ca-pub-6146692252066016" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <title>Can I Tell My Boss to Fuck Off?{% block title %}{% endblock %}</title>
+        <title>Can I Tell My Boss to {{ data['variant_map'][data['variant']]['capitalized'] }}?{% block title %}{% endblock %}</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <a class="navbar-brand" href="{{ url_for('index')}}">Can I Tell My Boss to Fuck Off?</a>
+            <a class="navbar-brand" href="{{ url_for('index')}}">Can I Tell My Boss to {{ data['variant_map'][data['variant']]['capitalized'] }}?</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

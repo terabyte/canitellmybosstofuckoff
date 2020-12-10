@@ -3,9 +3,9 @@ from time import time
 import concurrent.futures
 import os
 import random
+import re
 
 from flask import Flask, render_template, request, flash
-#from werkzeung.exceptions import abort
 
 app = Flask(__name__)
 
@@ -37,9 +37,36 @@ simulation_size = 100000
 success_threshold = 0.95
 maybe_threshold = 0.80
 
+variants = {
+        "shoveit": re.compile(".*shoveit\.com.*"),
+        "fuckoff": re.compile(".*fuckoff\.com.*"),
+        "dev": re.compile(".*:5000/.*"),
+}
+
+variant_map = {
+        "shoveit": {
+            "text": "shove it",
+            "capitalized": "Shove It",
+            "sentence": "Shove it",
+        },
+        "fuckoff": {
+            "text": "fuck off",
+            "capitalized": "Fuck Off",
+            "sentence": "Fuck off",
+        },
+        "dev": {
+            "text": "shove it",
+            "capitalized": "Shove It",
+            "sentence": "Shove it",
+        },
+}
+
+
+
 @app.route('/', methods=('GET', 'POST'))
 def index():
     data = dict()
+
     if request.method == 'POST':
         data = validate_and_parse_form(request.form)
         data['calculate'] = True
@@ -60,6 +87,16 @@ def index():
         data = defaults
 
     data['simulation_size'] = simulation_size
+    # default to SFW version I guess
+    data['variant'] = 'shoveit'
+    data['variant_map'] = variant_map
+    # determine if we are NSFW version or SFW version
+    for variant, rxp in variants.items():
+        print(f"Trying url {request.url} against variant {variant} with regexp {rxp}")
+        if rxp.match(request.url):
+            print(f"Detected variant {variant}")
+            data['variant'] = variant
+
     return render_template('index.html', data=data)
 
 

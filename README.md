@@ -40,7 +40,6 @@ These are just my notes about features I might implement
 * The cache is not shared between gunicorn workers.  Whoops.  Should probably fix that.
 * Help text on each field explaining it in greater detail
 * perma-link to a set of parameters
-* "safe for work" version? LOL
 
 ## Medium-Term
 * Better SEO / discoverability

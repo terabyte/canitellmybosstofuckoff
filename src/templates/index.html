@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Can I tell my boss to fuck off?</h1>
+<h1>Can I tell my boss to {{ data['variant_map'][data['variant']]['text'] }}?</h1>
 
     <br/><br/>
     {% if not data['calculate'] %}
