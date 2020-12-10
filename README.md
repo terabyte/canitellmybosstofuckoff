@@ -32,6 +32,28 @@ Recommend pyenv, python 3.9.0.
 
 You now have a local server running for testing!
 
+# References
+
+I consulted the following docs / tutorials while producing this site:
+
+* https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
+* https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
+* https://getbootstrap.com/docs/5.0/getting-started/download/
+* https://stackoverflow.com/questions/9786102/how-do-i-parallelize-a-simple-python-loop
+* https://stackoverflow.com/questions/1427255/is-there-a-python-caching-library
+
+# Dependencies and Thanks
+
+This project would have been impossible, or much more difficult, were it not for:
+* Python
+* Flask
+* Jinja
+* Gunicorn
+* Nginx
+* Git
+
+The site is hosted on my colo which runs cmyers.org and uses Joker.com for DNS.
+
 # TODO
 
 These are just my notes about features I might implement
