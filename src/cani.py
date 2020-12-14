@@ -62,6 +62,16 @@ variant_map = {
 }
 
 
+def add_variant_data(data):
+    # default to SFW version I guess
+    data['variant'] = 'shoveit'
+    data['variant_map'] = variant_map
+    # determine if we are NSFW version or SFW version
+    for variant, rxp in variants.items():
+        print(f"Trying url {request.url} against variant {variant} with regexp {rxp}")
+        if rxp.match(request.url):
+            print(f"Detected variant {variant}")
+            data['variant'] = variant
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
@@ -87,26 +97,21 @@ def index():
         data = defaults
 
     data['simulation_size'] = simulation_size
-    # default to SFW version I guess
-    data['variant'] = 'shoveit'
-    data['variant_map'] = variant_map
-    # determine if we are NSFW version or SFW version
-    for variant, rxp in variants.items():
-        print(f"Trying url {request.url} against variant {variant} with regexp {rxp}")
-        if rxp.match(request.url):
-            print(f"Detected variant {variant}")
-            data['variant'] = variant
-
+    add_variant_data(data)
     return render_template('index.html', data=data)
 
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    data = dict()
+    add_variant_data(data)
+    return render_template('about.html', data=data)
 
 @app.route('/faq')
 def faq():
-    return render_template('faq.html')
+    data = dict()
+    add_variant_data(data)
+    return render_template('faq.html', data=data)
 
 def validate_and_parse_form(form):
     data = dict()
