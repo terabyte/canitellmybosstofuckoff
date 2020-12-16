@@ -66,6 +66,7 @@ These are just my notes about features I might implement
 ## Medium-Term
 * Better SEO / discoverability
 * Nav bar elements don't show which page is active dynamically
+* plot of average $ left each year?  see matplotlib in python?
 
 ## Long Term
 * the whole thing is just fugly.  Needs TLC.
