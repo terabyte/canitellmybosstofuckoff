@@ -127,6 +127,11 @@ def favicon():
         return send_from_directory(os.path.join(app.root_path, 'static', 'favicon'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
+@app.route('/browserconfig.xml')
+def browserconfig():
+        return send_from_directory(os.path.join(app.root_path, 'static', 'favicon'), 'browserconfig.xml', mimetype='application/xml')
+
+
 def validate_and_parse_form(form):
     data = dict()
     data['total_savings'] = validate_dollars("Total Savings", form['total_savings'])
