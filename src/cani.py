@@ -6,7 +6,7 @@ import os
 import random
 import re
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, send_from_directory
 
 app = Flask(__name__)
 
@@ -118,6 +118,11 @@ def faq():
     data = dict()
     add_variant_data(data)
     return render_template('faq.html', data=data)
+
+# https://flask.palletsprojects.com/en/1.1.x/patterns/favicon/
+@app.route('/favicon.ico')
+def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static', 'favicon'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 def validate_and_parse_form(form):
     data = dict()
