@@ -26,42 +26,52 @@ href="{{ url_for('about') }}">About</a> page.
     <form method="post">
 		<label for="total_savings">Total Savings:</label>
 		<input type="text" id="total_savings" name="total_savings" value="{{ data['total_savings'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['total_savings'] }}"></i> 
 		<br/>
 
 		<label for="annual_disbursement">Annual Disbursement:</label>
 		<input type="text" id="annual_disbursement" name="annual_disbursement" value="{{ data['annual_disbursement'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['annual_disbursement'] }}"></i> 
 		<br/>
 
 		<label for="average_return">Average Return (i.e. 8% => 0.08):</label>
 		<input type="text" id="average_return" name="average_return" value="{{ data['average_return'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['average_return'] }}"></i> 
 		<br/>
 
 		<label for="standard_deviation">Standard Deviation (i.e. 19% => 0.19):</label>
 		<input type="text" id="standard_deviation" name="standard_deviation" value="{{ data['standard_deviation'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['standard_deviation'] }}"></i> 
 		<br/>
 
 		<label for="annual_inflation">Annual Inflation (i.e. 2.25% => 0.0225)</label>
 		<input type="text" id="annual_inflation" name="annual_inflation" value="{{ data['annual_inflation'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['annual_inflation'] }}"></i> 
 		<br/>
 
 		<label for="starting_age">Starting Age:</label>
 		<input type="text" id="starting_age" name="starting_age" value="{{ data['starting_age'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['starting_age'] }}"></i> 
 		<br/>
 
 		<label for="ending_age">Age at Death (aim high, ye optimist):</label>
 		<input type="text" id="ending_age" name="ending_age" value="{{ data['ending_age'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['ending_age'] }}"></i> 
 		<br/>
 
-		<label for="inheritance">Desired Inheritance (how much money you must have left to succeed, default zero)</label>
+		<label for="inheritance">Desired Inheritance/Legacy</label>
 		<input type="text" id="inheritance" name="inheritance" value="{{ data['inheritance'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['inheritance'] }}"></i> 
 		<br/>
 
-		<label for="social_security_payout">Social Security Payout (per month, default zero)</label>
+		<label for="social_security_payout">Social Security Payout (per month)</label>
 		<input type="text" id="social_security_payout" name="social_security_payout" value="{{ data['social_security_payout'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['social_security_payout'] }}"></i> 
 		<br/>
 
-		<label for="social_security_age">Age Social Security Disbursements Begin (default 70)</label>
+		<label for="social_security_age">Age Social Security Disbursements Begin</label>
 		<input type="text" id="social_security_age" name="social_security_age" value="{{ data['social_security_age'] }}"/>
+        <i class="far fa-question-circle" data-toggle="tooltip" title="{{ data['helptext']['social_security_age'] }}"></i> 
 		<br/>
 
         <button type="submit" class="btn btn-primary">Submit</button> <a href="{{ url_for('index') }}">clear</a>

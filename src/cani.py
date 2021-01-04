@@ -1,6 +1,7 @@
 from cachetools import cached, LRUCache
 from time import time
 import concurrent.futures
+import json
 import os
 import random
 import re
@@ -36,6 +37,10 @@ batch_size = 1000
 simulation_size = 100000
 success_threshold = 0.95
 maybe_threshold = 0.80
+
+helptext = None
+with open('configs/helptext.json') as f:
+    helptext = json.load(f)
 
 variants = {
         "shoveit": re.compile(".*shoveit\.com.*"),
@@ -98,6 +103,7 @@ def index():
 
     data['simulation_size'] = simulation_size
     add_variant_data(data)
+    add_helptext(data)
     return render_template('index.html', data=data)
 
 
@@ -210,6 +216,10 @@ def simulate_universe(avg_ret, std_dev, savings, disbursement, inflation, s_age,
         req_leftover = req_leftover * (1.0 + inflation)
         ss_payout = ss_payout * (1.0 + inflation)
     return True
+
+def add_helptext(data):
+    data['helptext'] = helptext
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
