@@ -73,9 +73,7 @@ def add_variant_data(data):
     data['variant_map'] = variant_map
     # determine if we are NSFW version or SFW version
     for variant, rxp in variants.items():
-        print(f"Trying url {request.url} against variant {variant} with regexp {rxp}")
         if rxp.match(request.url):
-            print(f"Detected variant {variant}")
             data['variant'] = variant
 
 
