@@ -6,7 +6,7 @@ import os
 import random
 import re
 
-from flask import Flask, render_template, request, flash, send_from_directory
+from flask import Flask, render_template, request, flash, send_from_directory, url_for
 
 app = Flask(__name__)
 
@@ -83,21 +83,28 @@ def index():
 
     if request.method == 'POST':
         data = validate_and_parse_form(request.form)
-        data['calculate'] = True
-        start = time()
-        success = monte_the_carlo_parallel(data)
-        end = time()
-        data['runtime'] = f"{end - start:.3f}"
-        data['success'] = f"{success*100:.2f}"
-        if success > success_threshold:
-            data['issuccess'] = 'YUP!'
-        elif success > maybe_threshold:
-            data['issuccess'] = 'MAYBE?'
-        else:
-            data['issuccess'] = 'NOPE!'
-
-    if request.method == 'GET':
+    elif request.method == 'GET' and len(request.args) > 0:
+        data = validate_and_parse_form(request.args)
+    else:
+        # GET and no data
         data = defaults
+        data['simulation_size'] = simulation_size
+        add_variant_data(data)
+        add_helptext(data)
+        return render_template('index.html', data=data)
+
+    data['calculate'] = True
+    start = time()
+    success = monte_the_carlo_parallel(data)
+    end = time()
+    data['runtime'] = f"{end - start:.3f}"
+    data['success'] = f"{success*100:.2f}"
+    if success > success_threshold:
+        data['issuccess'] = 'YUP!'
+    elif success > maybe_threshold:
+        data['issuccess'] = 'MAYBE?'
+    else:
+        data['issuccess'] = 'NOPE!'
 
     data['simulation_size'] = simulation_size
     add_variant_data(data)
@@ -233,6 +240,24 @@ def simulate_universe(avg_ret, std_dev, savings, disbursement, inflation, s_age,
 
 def add_helptext(data):
     data['helptext'] = helptext
+
+
+@app.context_processor
+def permlink_processor():
+    def permlink(data):
+        return url_for('index',
+                       total_savings=data['total_savings'],
+                       annual_disbursement=data['annual_disbursement'],
+                       average_return=data['average_return'],
+                       standard_deviation=data['standard_deviation'],
+                       annual_inflation=data['annual_inflation'],
+                       starting_age=data['starting_age'],
+                       ending_age=data['ending_age'],
+                       inheritance=data['inheritance'],
+                       social_security_payout=data['social_security_payout'],
+                       social_security_age=data['social_security_age'],
+                       )
+    return dict(permlink=permlink)
 
 
 if __name__ == "__main__":

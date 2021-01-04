@@ -11,7 +11,11 @@
     <h1>{{ data['issuccess'] }}</h1>
         <p>After a gripping mathematical battle (played out {{ data['simulation_size'] }} times), your chance of success was determined to be {{ data['success'] }}%.  Prognosis: {{ data['issuccess'] }}</p>
         {% if data['runtime'] %}
-        <p><small>Runtime: {{ data['runtime'] }} seconds</small></p>
+        <p>
+        <a href="{{ permlink(data) }}">Permanent (shareable) Link</a>
+        <br/>
+        <small>Runtime: {{ data['runtime'] }} seconds</small>
+        </p>
         {% endif %}
         <br/><br/>
         <h2>Tweak the numbers and try again...</h2>
