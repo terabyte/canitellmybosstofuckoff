@@ -43,27 +43,27 @@ with open('configs/helptext.json') as f:
     helptext = json.load(f)
 
 variants = {
-        "shoveit": re.compile(".*shoveit\.com.*"),
-        "fuckoff": re.compile(".*fuckoff\.com.*"),
-        "dev": re.compile(".*:5000/.*"),
+    "shoveit": re.compile(".*shoveit\\.com.*"),
+    "fuckoff": re.compile(".*fuckoff\\.com.*"),
+    "dev": re.compile(".*:5000/.*"),
 }
 
 variant_map = {
-        "shoveit": {
-            "text": "shove it",
-            "capitalized": "Shove It",
-            "sentence": "Shove it",
-        },
-        "fuckoff": {
-            "text": "fuck off",
-            "capitalized": "Fuck Off",
-            "sentence": "Fuck off",
-        },
-        "dev": {
-            "text": "shove it",
-            "capitalized": "Shove It",
-            "sentence": "Shove it",
-        },
+    "shoveit": {
+        "text": "shove it",
+        "capitalized": "Shove It",
+        "sentence": "Shove it",
+    },
+    "fuckoff": {
+        "text": "fuck off",
+        "capitalized": "Fuck Off",
+        "sentence": "Fuck off",
+    },
+    "dev": {
+        "text": "shove it",
+        "capitalized": "Shove It",
+        "sentence": "Shove it",
+    },
 }
 
 
@@ -77,6 +77,7 @@ def add_variant_data(data):
         if rxp.match(request.url):
             print(f"Detected variant {variant}")
             data['variant'] = variant
+
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
@@ -97,7 +98,6 @@ def index():
         else:
             data['issuccess'] = 'NOPE!'
 
-
     if request.method == 'GET':
         data = defaults
 
@@ -113,16 +113,19 @@ def about():
     add_variant_data(data)
     return render_template('about.html', data=data)
 
+
 @app.route('/faq')
 def faq():
     data = dict()
     add_variant_data(data)
     return render_template('faq.html', data=data)
 
+
 # https://flask.palletsprojects.com/en/1.1.x/patterns/favicon/
 @app.route('/favicon.ico')
 def favicon():
         return send_from_directory(os.path.join(app.root_path, 'static', 'favicon'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 def validate_and_parse_form(form):
     data = dict()
@@ -142,7 +145,7 @@ def validate_and_parse_form(form):
 def validate_dollars(field_name, value):
     try:
         return float(value)
-    except:
+    except Exception:
         flash(f"'{field_name}' must be a floating point number, got '{value}'")
         return 0.0
 
@@ -154,7 +157,7 @@ def validate_percent(field_name, value):
             flash(f"WARNING: {field_name} ({value}) is outside range 0% (0.0) to 100% (1.0), did you mean to do that?")
 
         return val
-    except Exception as e:
+    except Exception:
         flash(f"'{field_name}' must be a floating point number (i.e. 8% => 0.08), got '{value}'")
         return 0.0
 
@@ -166,7 +169,7 @@ def validate_age(field_name, value):
             flash(f"'{field_name}' must be an integer number from 1 to 200, got '{value}'")
             return 0
         return val
-    except:
+    except Exception:
         flash(f"'{field_name}' must be an integer number from 1 to 200, got '{value}'")
         return 1
 
@@ -180,8 +183,10 @@ def run_sim_batch(data):
             yes_count += 1
     return yes_count, total_count
 
+
 def freezehash(o):
     return frozenset(o.items())
+
 
 # After some testing, discovered that parallelism with batch sizes of 1000 turn
 # a 100k simulation load from 3.5s to just under 1s, on my 12core laptop.
@@ -197,13 +202,13 @@ def monte_the_carlo_parallel(data):
 
     return 1.0 * yes_count / total_count
 
+
 def monte_the_carlo(data):
     yes_count = 0
     for i in range(0, simulation_size):
         if simulate_universe(data['average_return'], data['standard_deviation'], data['total_savings'], data['annual_disbursement'], data['annual_inflation'], data['starting_age'], data['ending_age'], data['inheritance'], data['social_security_payout'], data['social_security_age']):
             yes_count += 1
     return 1.0 * yes_count / simulation_size
-
 
 
 def simulate_universe(avg_ret, std_dev, savings, disbursement, inflation, s_age, e_age, req_leftover, ss_payout, ss_age):
@@ -221,6 +226,7 @@ def simulate_universe(avg_ret, std_dev, savings, disbursement, inflation, s_age,
         req_leftover = req_leftover * (1.0 + inflation)
         ss_payout = ss_payout * (1.0 + inflation)
     return True
+
 
 def add_helptext(data):
     data['helptext'] = helptext
