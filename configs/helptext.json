@@ -1,13 +1,42 @@
 {
-    "total_savings":"This is the retirement savings you have at the start of the simulation.",
-    "annual_disbursement":"This is the pre-tax dollars you will take from your savings each year, in dollars for the first year of the simulation.  Each subsequent year the amount is adjusted for inflation.  I believe if most of your savings are classified as long-term capital gains, 22% is a suitable tax rate, but you should consult an expert, which I am not.",
-    "average_return":"This is the average return of your investments.  If you put your money in a high-yield savings account, this is 1%.  If you put your money under your mattress, it is zero.  The stock market averages 8% but 6% is reasonable for a well-diversified actively-managed portfolio.",
-    "standard_deviation":"This is one of the most critical inputs.  This will impact how often the market strays from the average.  Historically speaking, this number is huge, 19%, for the stock market.  For a savings account or other extremely safe investment, it could effectively be zero.  Again, a well-diversified and actively managed portfolio might use 13% as a conservative value, but make sure you understand what this means before you base any life decisions on this!",
-    "annual_inflation":"This is the annual inflation.  In reality, inflation varies year to year, but since you want a safe back-of-the-envelope calculation, pick the highest number you expect.  Currently, 2.25% seems reasonable.",
-    "starting_age":"This is the age at which you intend to start drawing from your savings.",
-    "ending_age":"This is the age at which you expect to stop drawing from your savings (be optimistic, but not too optimistic - it's always possible we will all live to see the singularity and immortality, but should that happen, we probably aren't going to worry about our retirement savings in the same way anymore...)",
-    "inheritance":"This is how much you want to have left at the ending age, by default we choose zero.  You might think of this as the minimum amount you hope to have to settle your estate, donate to charities, and pass to your beneficiaries.  You could also use this parameter to enter a cushion.  The value will be inflation adjusted each year, so you enter it in current-day dollars.",
-    "social_security_payout":"This is the amount you expect to receive from social security, if it still exists (for the purpose of this simulation, we will presume it does).  You can go to ssa.gov and look up your current values based upon what you have paid into the system from prior work (in the US, of course) to make an informed entry here.",
-    "social_security_age":"This is the age at which you intend to start drawing upon social security.  You may choose as early as 62 and as late as 70, and 70 is probably best.  Delaying will get you a higher payout, but if your health is such that you won't make it to 70 or much longer, it may benefit you more to pull before then.  Depending on how much you need, and how much social security covers, it can have a large impact on your retirement success.",
-    "EOL":"This element exists because json hates trailing commas."
+    "total_savings":{
+        "label":"Total Savings:",
+        "tt":"This is the retirement savings you have at the start of the simulation."
+    },
+    "annual_disbursement":{
+        "label":"Annual Disbursement:",
+        "tt":"This is the pre-tax dollars you will take from your savings each year, in dollars for the first year of the simulation.  Each subsequent year the amount is adjusted for inflation.  I believe if most of your savings are classified as long-term capital gains, 22% is a suitable tax rate, but you should consult an expert, which I am not."
+    },
+    "average_return":{
+        "label":"Average Return (i.e. 8% => 0.08):",
+        "tt":"This is the average return of your investments.  If you put your money in a high-yield savings account, this is 1%.  If you put your money under your mattress, it is zero.  The stock market averages 8% but 6% is reasonable for a well-diversified actively-managed portfolio."
+    },
+    "standard_deviation":{
+        "label":"Standard Deviation (i.e. 19% => 0.19):",
+        "tt":"This is one of the most critical inputs.  This will impact how often the market strays from the average.  Historically speaking, this number is huge, 19%, for the stock market.  For a savings account or other extremely safe investment, it could effectively be zero.  Again, a well-diversified and actively managed portfolio might use 13% as a conservative value, but make sure you understand what this means before you base any life decisions on this!"
+    },
+    "annual_inflation":{
+        "label":"Annual Inflation (i.e. 2.25% => 0.0225):",
+        "tt":"This is the annual inflation.  In reality, inflation varies year to year, but since you want a safe back-of-the-envelope calculation, pick the highest number you expect.  Currently, 2.25% seems reasonable."
+    },
+    "starting_age":{
+        "label":"Starting Age:",
+        "tt":"This is the age at which you intend to start drawing from your savings."
+    },
+    "ending_age":{
+        "label":"Age at Death (aim high, ye optimist):",
+        "tt":"This is the age at which you expect to stop drawing from your savings (be optimistic, but not too optimistic - it's always possible we will all live to see the singularity and immortality, but should that happen, we probably aren't going to worry about our retirement savings in the same way anymore...)"
+    },
+    "inheritance":{
+        "label":"Desired Inheritance/Legacy:",
+        "tt":"This is how much you want to have left at the ending age, by default we choose zero.  You might think of this as the minimum amount you hope to have to settle your estate, donate to charities, and pass to your beneficiaries.  You could also use this parameter to enter a cushion.  The value will be inflation adjusted each year, so you enter it in current-day dollars."
+    },
+    "social_security_payout":{
+        "label":"Social Security Payout (per month):",
+        "tt":"This is the amount you expect to receive from social security, if it still exists (for the purpose of this simulation, we will presume it does).  You can go to ssa.gov and look up your current values based upon what you have paid into the system from prior work (in the US, of course) to make an informed entry here."
+    },
+    "social_security_age":{
+        "label":"Age Social Security Disbursements Begin:",
+        "tt":"This is the age at which you intend to start drawing upon social security.  You may choose as early as 62 and as late as 70, and 70 is probably best.  Delaying will get you a higher payout, but if your health is such that you won't make it to 70 or much longer, it may benefit you more to pull before then.  Depending on how much you need, and how much social security covers, it can have a large impact on your retirement success."
+    }
 }

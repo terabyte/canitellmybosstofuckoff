@@ -60,13 +60,14 @@ These are just my notes about features I might implement
 
 ## Short Term
 * The cache is not shared between gunicorn workers.  Whoops.  Should probably fix that.
-* Help text on each field explaining it in greater detail
 * perma-link to a set of parameters
+* advanced view with extra fields? (i.e. invest every year before retirement, retire at age X, lump sum cash received at age X?)
 
 ## Medium-Term
 * Better SEO / discoverability
 * Nav bar elements don't show which page is active dynamically
 * plot of average $ left each year?  see matplotlib in python?
+* convert json configs to HOCON for the trailing space?
 
 ## Long Term
 * the whole thing is just fugly.  Needs TLC.
@@ -75,3 +76,4 @@ These are just my notes about features I might implement
 * I should probably have a plan for what to do if this blows up and/or gets
   DOS'd.  This will definitely be the most CPU intensive thing on my colo'd
   server if it gets any traffic at all.
+* Support for translations?
